@@ -4,7 +4,7 @@ from PCShop.models import Category, Manufacturer, Component, Order, OrderItem, P
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name")
+    list_display = ("id", "name", "image")
 
 @admin.register(Manufacturer)
 class ManufacturerAdmin(admin.ModelAdmin):
@@ -12,7 +12,7 @@ class ManufacturerAdmin(admin.ModelAdmin):
 
 @admin.register(Component)
 class ComponentAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "category", "manufacturer", "price", "stock", "description")
+    list_display = ("id", "name", "category", "manufacturer", "price", "stock", "description", "image")
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -24,4 +24,4 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 @admin.register(PcBuild)
 class PcBuildAdmin(admin.ModelAdmin):
-    list_display = ("id", "name")
+    list_display = ("id", "name", "image")
