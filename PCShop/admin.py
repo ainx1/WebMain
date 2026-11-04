@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from PCShop.models import Category, Manufacturer, Component, Order, OrderItem, PcBuild
+from PCShop.models import Profile, Category, Manufacturer, Component, Order, OrderItem, PcBuild
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return False
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

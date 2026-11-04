@@ -40,7 +40,6 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class PcBuildSerializer(serializers.ModelSerializer):
     product = ComponentSerializer(many=True, read_only=True)
-
     class Meta:
         model = PcBuild
         fields = ['id', 'name', 'product', 'image']

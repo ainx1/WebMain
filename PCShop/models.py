@@ -1,4 +1,28 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+
+class Profile(models.Model):
+    class Role(models.IntegerChoices):
+        undefined = 0, ("Не определена")
+        customer = 1, ("Покупатель")
+        manager = 2, ("Менеджер")
+
+    user = models.OneToOneField("auth.User", on_delete=models.CASCADE, null=True, blank=True)
+    role = models.SmallIntegerField("Роль пользователя", choices=Role, default=Role.undefined)
+    phone = models.TextField("Номер телефона", null=True, blank=True)
+    address = models.TextField("Адрес доставки", null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username if self.user else f"Profile {self.id}"
+
+@receiver(post_save, sender=User)
+def on_user_create(sender, instance, created, *args, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
 
 # 1) категория
 class Category(models.Model):
@@ -45,6 +69,7 @@ class Component(models.Model):
 class Order(models.Model):
     customer_name = models.TextField("ФИО покупателя")
     customer_phone = models.TextField("Номер телефона", null=True)
+    customer = models.ForeignKey("auth.User", on_delete=models.CASCADE, null=True, verbose_name="Покупатель")
     status = models.TextField("Статус заказа", null=True)
     date = models.DateField("Дата заказа", null=True)
     time = models.TimeField("Время заказа", null=True)
