@@ -5,7 +5,7 @@ from PCShop.models import Component, Category, Manufacturer, Order, OrderItem, P
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'image']
 
 
 class ManufacturerSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class ComponentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Component
-        fields = ['id', 'name', 'category', 'manufacturer', 'price', 'stock', 'description']
+        fields = ['id', 'name', 'category', 'manufacturer', 'price', 'stock', 'description', 'image']
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -43,4 +43,4 @@ class PcBuildSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PcBuild
-        fields = ['id', 'name', 'product']
+        fields = ['id', 'name', 'product', 'image']
