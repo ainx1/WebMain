@@ -16,12 +16,12 @@ from PCShop.api import (
 )
 
 router = DefaultRouter()
-router.register(r'components', ComponentViewSet, basename='component')
-router.register(r'categories', CategoryViewSet, basename='category')   
-router.register(r'manufacturers', ManufacturerViewSet, basename='manufacturer')
-router.register(r'orders', OrderViewSet, basename='order')
-router.register(r'order-items', OrderItemViewSet, basename='order-item')
-router.register(r'pc-builds', PcBuildViewSet, basename='pc-build')
+router.register('components', ComponentViewSet, basename='component')
+router.register('categories', CategoryViewSet, basename='category')   
+router.register('manufacturers', ManufacturerViewSet, basename='manufacturer')
+router.register('orders', OrderViewSet, basename='order')
+router.register('order-items', OrderItemViewSet, basename='order-item')
+router.register('pc-builds', PcBuildViewSet, basename='pc-build')
 
 urlpatterns = [
     # path('', views.ShowComponentsView.as_view()),

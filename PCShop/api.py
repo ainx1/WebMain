@@ -2,7 +2,11 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
 
 from PCShop.models import (
-    Component, Category, Manufacturer, Order, OrderItem, PcBuild
+    Component,
+    Category, 
+    Manufacturer, 
+    Order, OrderItem,
+    PcBuild
 )
 
 from PCShop.serializers import (
