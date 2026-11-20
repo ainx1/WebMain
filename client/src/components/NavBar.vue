@@ -1,0 +1,69 @@
+<script setup>
+import axios from 'axios';
+import { onBeforeMount, ref } from 'vue';
+import Cookies from 'js-cookie';
+import useProfileStore from '@/stores/profileStore';
+import { storeToRefs } from 'pinia';
+
+
+const profileStore = useProfileStore();
+const {
+    isAuthenticated,
+    userName
+} = storeToRefs(profileStore)
+
+
+// async function fetchMe() {
+//     const r = await axios.get('/api/profile/me/');
+//     axios.defaults.headers.common['X-CSRFToken'] = Cookies.get("csrftoken");
+
+//     isAuthenticated.value = r.data.is_authenticated;
+//     userName.value = r.data.is_authenticated ? r.data.username : null;
+
+// }
+
+async function onLogoutButtonClick() {
+    // await axios.post("/api/profile/logout/")
+    // fetchMe();
+}
+
+// onBeforeMount(() => {
+//     fetchMe();
+// })
+
+</script>
+
+<template>
+    
+<nav class="navbar navbar-expand-sm bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse w-100 justify-content-between" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <router-link class="nav-link" to="/">Home</router-link>
+        </li>
+
+        <li class="nav-item">
+            <router-link class="nav-link" to="/login">Login</router-link>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/admin">Admin</a>
+        </li>
+      </ul>
+        
+      <div role="search">
+        Профиль: {{ userName }}
+        <button v-if="isAuthenticated" class="btn btn-outline-success" @click="onLogoutButtonClick">
+            Выйти
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+    
+</template>
