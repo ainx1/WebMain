@@ -1,4 +1,7 @@
 import { defineStore } from "pinia"
+import {ref, onBeforeMount} from 'vue';
+import axios from 'axios';
+import Cookies from "js-cookie";
 
 const useProfileStore = defineStore('profileStore', () => {
 
@@ -16,8 +19,8 @@ const useProfileStore = defineStore('profileStore', () => {
 
     async function login(username, password) {
             const r = await axios.post('/api/profile/login/' , {
-            username: username.value,
-            password: password.value
+            username: username,
+            password: password
         })
         fetchMe();
     }

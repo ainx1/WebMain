@@ -12,24 +12,9 @@ const {
     userName
 } = storeToRefs(profileStore)
 
-
-// async function fetchMe() {
-//     const r = await axios.get('/api/profile/me/');
-//     axios.defaults.headers.common['X-CSRFToken'] = Cookies.get("csrftoken");
-
-//     isAuthenticated.value = r.data.is_authenticated;
-//     userName.value = r.data.is_authenticated ? r.data.username : null;
-
-// }
-
 async function onLogoutButtonClick() {
-    // await axios.post("/api/profile/logout/")
-    // fetchMe();
+   profileStore.logout();
 }
-
-// onBeforeMount(() => {
-//     fetchMe();
-// })
 
 </script>
 

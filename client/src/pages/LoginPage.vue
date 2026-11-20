@@ -1,15 +1,20 @@
 <script setup>
-import axios from 'axios';
+import useProfileStore from '@/stores/profileStore';
+import { storeToRefs } from 'pinia';
 import {ref} from 'vue';
+
+
+const profileStore = useProfileStore();
+const {
+    isAuthenticated,
+    userName
+} = storeToRefs(profileStore)
 
 const username = ref("")
 const password = ref("")
 
 async function onLoginClick() {
-    // const r = await axios.post('/api/profile/login/' , {
-    //     username: username.value,
-    //     password: password.value
-    // })
+    profileStore.login(username.value, password.value)
 
 }
 
